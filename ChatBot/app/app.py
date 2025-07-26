@@ -7,7 +7,7 @@ import random
 
 @st.cache_resource(show_spinner=True)
 def load_model():
-    with open('modelo/model.pkl', 'rb') as f:
+    with open('ChatBot/modelo/model.pkl', 'rb') as f:
         model = pickle.load(f)
     embed_model = SentenceTransformer(model['embedding_model_name'])
     return model, embed_model
