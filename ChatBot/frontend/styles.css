@@ -1,0 +1,197 @@
+/* Reset */
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+body {
+  font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9fafb;
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+header {
+  background: #2a2a72;
+  padding: 20px 30px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+header h1 {
+  font-size: 1.8rem;
+  letter-spacing: 1.5px;
+  user-select: none;
+}
+nav {
+  display: flex;
+  gap: 20px;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+nav a:hover, nav a.active {
+  background: #74ebd5;
+  color: #2a2a72;
+}
+
+/* Secciones generales */
+main {
+  width: 100%;
+}
+
+section {
+  width: 100%;
+  min-height: 25vh;
+  padding: 4rem 2rem;
+  box-sizing: border-box;
+}
+
+/* Sección 1 - Bienvenida */
+#inicio {
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height:min-content;
+}
+
+.contenedorInicio {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+  padding: 0;
+}
+
+.textoInicio {
+  flex: 1;
+  padding: 1rem;
+}
+
+.textoInicio h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.textoInicio p {
+  font-size: 1.2rem;
+}
+
+.imagenInicio {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  /* Definir una altura máxima fija para el contenedor para evitar que crezca demasiado */
+  max-height: 350px; /* o el tamaño que te convenga */
+  overflow: hidden; /* que no desborde si la imagen es más grande */
+}
+
+.imagenInicio img {
+  max-width: 100%;
+  max-height: 100%; 
+  width: auto;    
+  height: auto;    
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+
+/* Sección 2 - Tabs */
+#info-adicional {
+  background: #ffffff;
+  text-align: center;
+}
+
+.tabs {
+  margin: 2rem 0;
+}
+
+.tab-btn {
+  padding: 0.8rem 1.5rem;
+  margin: 0 0.5rem;
+  border: none;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+  background-color: #1976d2;
+  color: #fff;
+}
+
+.tab-content {
+  display: none;
+  margin-top: 2rem;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.tab-content img {
+  width: 400px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+/* Sección 3 - Sobre nosotros */
+#sobre-nosotros {
+  background: #f0f8ff;
+  text-align: center;
+}
+
+#sobre-nosotros p {
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: auto;
+  line-height: 1.6;
+}
+
+
+footer {
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 20px 10px;
+  user-select: none;
+}
+
+/* Responsive */
+@media(max-width: 600px) {
+  nav {
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.chatbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  height: 500px;
+  z-index: 999;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}

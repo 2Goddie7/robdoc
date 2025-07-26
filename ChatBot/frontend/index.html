@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MediCom</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Botón flotante */
+    #chatbot-button {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #74ebd5;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
+    #chatbot-button:hover {
+      background: #56c6bf;
+    }
+    #chatbot-button svg {
+      width: 28px;
+      height: 28px;
+      fill: #2a2a72;
+    }
+
+    /* Contenedor del iframe */
+    #chatbot-container {
+      position: fixed;
+      bottom: 90px;
+      right: 25px;
+      width: 360px;
+      height: 540px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+      border-radius: 18px;
+      overflow: hidden;
+      background: white;
+      display: none;
+      z-index: 9999;
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @media (max-width: 480px) {
+      #chatbot-container {
+        width: 90vw;
+        height: 60vh;
+        right: 5%;
+        bottom: 80px;
+      }
+      #chatbot-button {
+        width: 50px;
+        height: 50px;
+      }
+      #chatbot-button svg {
+        width: 22px;
+        height: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>MediCom</h1>
+  <nav>
+    <a href="#inicio" class="active">Inicio</a>
+    <a href="#info-adicional">Especialidades</a>
+    <a href="#sobre-nosotros">Sobre nosotros</a>
+  </nav>
+</header>
+
+<main>
+  <!-- Sección 1: Inicio -->
+  <section id="inicio">
+    <div class="contenedorInicio">
+      <div class="textoInicio">
+        <h1>Bienvenido a MediCom</h1>
+        <p>Accede a nuestros servicios médicos de forma rápida y sencilla.</p>
+      </div>
+      <div class="imagenInicio">
+        <img src="./recursos/fondo.webp" alt="Centro Médico">
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 2: Tabs de especialidades -->
+  <section id="info-adicional">
+    <h2>Especialidades</h2>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="medicina">Medicina General</button>
+      <button class="tab-btn" data-tab="pediatria">Pediatría</button>
+      <button class="tab-btn" data-tab="psicologia">Psicología</button>
+    </div>
+    <div class="tab-content active" id="medicina">
+      <img src="./recursos/medicina-general.avif" alt="Medicina General" />
+      <p>Consulta general para todas las edades. Atención rápida y precisa.</p>
+    </div>
+    <div class="tab-content" id="pediatria" style="display:none;">
+      <img src="./recursos/pediatria.jpg" alt="Pediatría" />
+      <p>Especialistas en la salud de los más pequeños.</p>
+    </div>
+    <div class="tab-content" id="psicologia" style="display:none;">
+      <img src="./recursos/psicologia.jpg" alt="Psicología" />
+      <p>Apoyo emocional y psicológico para tu bienestar.</p>
+    </div>
+  </section>
+
+  <!-- Sección 3: Sobre nosotros -->
+  <section id="sobre-nosotros">
+    <h2>Sobre Nosotros</h2>
+    <p>
+      Somos un equipo médico comprometido con tu bienestar. A través de este
+      sistema puedes acceder a recomendaciones médicas personalizadas
+      rápidamente. Contamos con profesionales calificados en múltiples áreas.
+    </p>
+  </section>
+</main>
+
+<footer>
+  MediCom 2025 - Diego Mullo - David Muela
+</footer>
+
+<!-- Contenedor chatbot -->
+<div id="chatbot-container">
+  <iframe
+    src="https://robdoc.onrender.com/"
+    style="width: 100%; height: 100%; border: none; border-radius: 18px;"
+    title="RobDoc"
+  ></iframe>
+</div>
+
+<!-- Botón flotante -->
+<button id="chatbot-button" aria-label="Abrir chat de SaludPlus" title="Abrir chat">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M4 4h16v12H5.17L4 17.17V4zm2 2v8h12V6H6zM6 22l4-4h10V6H4v12z" />
+  </svg>
+</button>
+
+<script>
+  const tabs = document.querySelectorAll('.tab-btn');
+  const contents = document.querySelectorAll('.tab-content');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.style.display = 'none');
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).style.display = 'block';
+    });
+  });
+
+  const navLinks = document.querySelectorAll('header nav a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = link.getAttribute('href').substring(1);
+      document.getElementById(target).scrollIntoView({ behavior: 'smooth' });
+      navLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
+
+  const chatbotButton = document.getElementById('chatbot-button');
+  const chatbotContainer = document.getElementById('chatbot-container');
+  chatbotButton.addEventListener('click', () => {
+    chatbotContainer.style.display = chatbotContainer.style.display === 'block' ? 'none' : 'block';
+  });
+</script>
+
+</body>
+</html>
